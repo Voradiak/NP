@@ -20,7 +20,7 @@
   {% endif %}
   {% for item in lessons_with_tests %}
   <li>
-    <strong><a href='{% url "lesson_detail" lesson.id %}'>{{ item.lesson.order }}. {{ item.lesson.title }}</a></strong>
+    <strong><a href='{% url "lesson_detail" item.lesson.id %}'>{{ item.lesson.order }}. {{ item.lesson.title }}</a></strong>
     {% if item.tests %}
     <ul>
       {% for test in item.tests %}
