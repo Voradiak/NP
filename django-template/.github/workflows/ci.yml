@@ -41,6 +41,6 @@ jobs:
     - name: Deploy to Railway
       uses: railwayapp/railway-deploy@v1
       with:
-        railwayToken: ${{ secrets.RAILWAY_TOKEN }}
-        projectId: ${{ secrets.RAILWAY_PROJECT_ID }} # Ensure this secret exists in your repository settings
+        railwayToken: a765ce00-3e57-4138-9bf5-6a2520b2a177
+        projectId: 2 # Ensure this secret exists in your repository settings
         # environmentId: ${{ secrets.RAILWAY_ENVIRONMENT_ID }}
