@@ -1,0 +1,14 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h2>My Courses</h2>
+<ul>
+  {% for enrollment in enrollments %}
+  <li>
+    <strong><a href="{% url 'course_detail' enrollment.course.id %}">{{ enrollment.course.title }}</a></strong> - Enrolled on {{ enrollment.enrolled_at|date:"Y-m-d" }}
+  </li>
+  {% empty %}
+  <li>You are not enrolled in any courses.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

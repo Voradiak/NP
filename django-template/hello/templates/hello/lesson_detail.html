@@ -1,0 +1,20 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h2>{{ lesson.title }}</h2>
+<p>{{ lesson.content }}</p>
+
+<h3>Tests</h3>
+{% if user.role == 'teacher'%}
+<a href="{% url 'create_test' lesson.id %}">Create Test</a>
+{% endif %}
+<ul>
+  {% for test in tests %}
+  <li>{{ test.title }}</li>
+  {% empty %}
+  <li>No tests available for this lesson.</li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'course_detail' lesson.course.id %}">Back to Course</a>
+{% endblock %}

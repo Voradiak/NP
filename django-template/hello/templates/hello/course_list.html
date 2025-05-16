@@ -1,0 +1,20 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h2>Courses</h2>
+<ul>
+  {% for course in courses %}
+  <li>
+    <strong><a href="{% url 'course_detail' course.id %}">{{ course.title }}</a></strong> by {{ course.teacher.username }}<br>
+    {{ course.description }}<br>
+    {% if is_enrolled %}
+        <p>You are already enrolled in this course.</p>
+    {% else %}
+        <a href="{% url 'enroll_course' course.id %}">Enroll</a>
+    {% endif %}
+  </li>
+  {% empty %}
+  <li>No courses available.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

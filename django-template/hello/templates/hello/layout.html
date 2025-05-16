@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hello/site.css' %}"/>
+</head>
+
+<body>
+<div class="navbar">
+    <a href="{% url 'home' %}" class="navbar-brand">Home</a>
+    <a href="{% url 'log' %}" class="navbar-item">New Message</a>
+    <a href="{% url 'about' %}" class="navbar-item">About</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
+        <span class="navbar-text">Hello, {{ user.username }}</span>
+    {% else %}
+        <a href="{% url 'login' %}" class="navbar-item">Login</a>
+        <a href="{% url 'register' %}" class="navbar-item">Register</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'course_list' %}" class="navbar-item">All Courses</a>
+    {% endif %}
+    {% if user.is_authenticated and user.role == 'teacher' %}
+        <a href="{% url 'create_course' %}" class="navbar-item">Create Course</a>
+        <a href="{% url 'teacher_courses' %}" class="navbar-item">My Courses</a>
+    {% endif %}
+    {% if user.is_authenticated and user.role == 'student' %}
+        <a href="{% url 'profile' %}" class="navbar-item">My Profile</a>
+    {% endif %}
+</div>
+
+<div class="body-content">
+    {% block content %}
+    {% endblock %}
+    <hr/>
+</div>
+</body>
+</html>

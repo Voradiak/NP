@@ -1,0 +1,44 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h2>{{ course.title }}</h2>
+<p><strong>Teacher:</strong> {{ course.teacher.username }}</p>
+<p><strong>Description:</strong> {{ course.description }}</p>
+<p><strong>Created at:</strong> {{ course.created_at }}</p>
+<p><strong>Max Students:</strong> {{ course.max_students }}</p>
+
+{% if remaining_seats == 0 %}
+  <p><strong>This course is full.</strong></p>
+{% else %}
+  <p><strong>Available slots:</strong> {{ remaining_seats }}</p>
+{% endif %}
+
+<h3>Lessons and Tests</h3>
+<ul>
+  {% if user.role == 'teacher'%}
+    <li><a href="{% url 'create_lesson' course.id %}">Create Lesson</a></li>
+  {% endif %}
+  {% for item in lessons_with_tests %}
+  <li>
+    <strong><a href='{% url "lesson_detail" lesson.id %}'>{{ item.lesson.order }}. {{ item.lesson.title }}</a></strong>
+    {% if item.tests %}
+    <ul>
+      {% for test in item.tests %}
+      <li>Test: {{ test.title }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No tests for this lesson.</p>
+    {% endif %}
+  </li>
+  {% empty %}
+  <li>No lessons available for this course.</li>
+  {% endfor %}
+{% if user.is_authenticated %}
+  {% if is_enrolled %}
+    <p>уже записаны на курс</p>
+  {% else %}
+    <a href="{% url 'enroll_course' course.id %}">записаться</a>
+  {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "hello/layout.html" %}
+
+{% block content %}
+<h2>My Courses (Teacher)</h2>
+<ul>
+  {% for course in courses %}
+  <li>
+    <strong>{{ course.title }}</strong> - Created on {{ course.created_at|date:"Y-m-d" }}
+    <span>{{ course.description }}</span><br>
+    <a href="{% url 'course_detail' course.id %}">View Course</a>
+  </li>
+  {% empty %}
+  <li>You have not created any courses.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
