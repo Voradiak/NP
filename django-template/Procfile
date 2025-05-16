@@ -1,1 +1,1 @@
-web: gunicorn django-template.wsgi
+web: gunicorn web_django.wsgi
