@@ -28,12 +28,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'g)ldm@4j5!e=256t&)a2*4=e@s_)%6!c%51xk$sx7nwn2lb--&' 
+## os.getenv('SECRET_KEY') ## в раилвей введи 'g)ldm@4j5!e=256t&)a2*4=e@s_)%6!c%51xk$sx7nwn2lb--&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*", ".railway.app"]
+ALLOWED_HOSTS = ['localhost','127.0.0.1','np-production-45be.up.railway.app'] 
+## os.getenv('ALLOWED_HOSTS', '').split(',') ## на раилвей введи localhost,127.0.0.1,np-production-45be.up.railway.app
 
 
 # Application definition
